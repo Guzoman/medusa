@@ -3,9 +3,9 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/static-build"
+      "use": "@vercel/node"
     }
   ],
-  "outputDirectory": "build",
-  "framework": "medusa"
+  "outputDirectory": "dist",
+  "framework": null
 }
