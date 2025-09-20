@@ -1,7 +1,15 @@
 {
+  "build": {
+    "env": {
+      "NODE_VERSION": "18.x"
+    }
+  },
+  "env": {
+    "NODE_VERSION": "18.x"
+  },
   "functions": {
-    "api/index.js": {
-      "runtime": "@vercel/node@2.16.1"
+    "api/**/*.js": {
+      "runtime": "@vercel/node@2.15.0"
     }
   }
 }
