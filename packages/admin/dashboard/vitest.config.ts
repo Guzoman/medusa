@@ -1,5 +1,6 @@
 import { resolve, sep } from "path"
 import { defineConfig } from "vitest/config"
+import react from "@vitejs/plugin-react"
 
 const toPosix = (value: string) => value.split(sep).join("/")
 const medusaAliasBase = toPosix(
@@ -7,10 +8,11 @@ const medusaAliasBase = toPosix(
 )
 
 export default defineConfig({
+  plugins: [react()],
   resolve: {
     alias: [
       {
-        find: /^@medusajs\/([^/]+)$/, 
+        find: /^@medusajs\/([^/]+)$/,
         replacement: `${medusaAliasBase}/$1/src/index.ts`,
       },
       {
@@ -20,8 +22,6 @@ export default defineConfig({
     ],
   },
   test: {
-    globals: true,
-    environment: "node",
-    include: ["**/*.spec.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    environment: "jsdom",
   },
 })
