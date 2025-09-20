@@ -1,7 +1,14 @@
-import inject from "@medusajs/admin-vite-plugin"
+import { resolve, sep } from "path"
+
+import inject from "../admin-vite-plugin/src/index"
 import react from "@vitejs/plugin-react"
 import { defineConfig, loadEnv } from "vite"
 import inspect from "vite-plugin-inspect"
+
+const toPosix = (value: string) => value.split(sep).join("/")
+const medusaAliasBase = toPosix(
+  resolve(__dirname, "../../..", "node_modules", "@medusajs")
+)
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -26,6 +33,18 @@ export default defineConfig(({ mode }) => {
         sources,
       }),
     ],
+    resolve: {
+      alias: [
+        {
+          find: /^@medusajs\/([^/]+)$/, 
+          replacement: `${medusaAliasBase}/$1/src/index.ts`,
+        },
+        {
+          find: /^@medusajs\/([^/]+)\/(.*)$/, 
+          replacement: `${medusaAliasBase}/$1/src/$2`,
+        },
+      ],
+    },
     define: {
       __BASE__: JSON.stringify(BASE),
       __BACKEND_URL__: JSON.stringify(BACKEND_URL),
