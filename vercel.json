@@ -4,5 +4,13 @@
     "api/**/*.js": {
       "runtime": "@vercel/node@2.15.0"
     }
+  },
+  "build": {
+    "env": {
+      "NODE_VERSION": "20.x"
+    }
+  },
+  "env": {
+    "NODE_VERSION": "20.x"
   }
 }
