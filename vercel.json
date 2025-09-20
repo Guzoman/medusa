@@ -1,4 +1,5 @@
 {
+  "outputDirectory": "api",
   "functions": {
     "api/**/*.js": {
       "runtime": "@vercel/node@2.15.0"
