@@ -1,0 +1,1 @@
+export { ProductoExtendido } from "./producto-extendido"
